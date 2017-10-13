@@ -1,0 +1,7 @@
+"0","tws_plot <- twoway_scatterg(hello, hello$Distance, hello$Time_Asleep,
+                  hello$absmargweight, hello$posnegmarg,
+                  ""Distance Walked (km)"", ""Time Asleep (hrs)"")
+"
+"2","Error in twoway_scatterg(hello, hello$Distance, hello$Time_Asleep, hello$absmargweight,  : 
+  could not find function ""twoway_scatterg""
+"

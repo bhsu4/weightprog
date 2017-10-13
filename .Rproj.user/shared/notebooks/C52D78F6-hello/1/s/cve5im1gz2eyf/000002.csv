@@ -1,0 +1,5 @@
+"0","twoway_scatterpos(data = NULL, xy_variable, by_variable, xy_label )
+"
+"2","Error in twoway_scatterpos(data = NULL, xy_variable, by_variable, xy_label) : 
+  could not find function ""twoway_scatterpos""
+"
