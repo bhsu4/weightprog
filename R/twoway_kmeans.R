@@ -1,17 +1,12 @@
-twoway_kmeans <- function(data, kmax, xname, yname, xvar, yvar, byobj, xlabel, ylabel){
+twoway_kmeans <- function(xname, yname, kmax, xlabel, ylabel, guidecolor) {
+  data.km <- cbind(x1 = xname, x2 = yname)
+  kclusts <- data.frame(kmax=1:kmax) %>% group_by(kmax) %>% do(kclust=kmeans(data.km, .$kmax))
+  #do kmeans on data for each k-number of clusters
+  assignments <- kclusts %>% group_by(kmax) %>% do(augment(.$kclust[[1]], data.km))
 
-    res.kmeans <- lapply(1:kmax, function(i) {
-    kmeans(data[,c(xname, yname)], centers = i)
-  })
-  cluster.colors <- lapply(res.kmeans, function(x) x$cluster)
-
-  l_ply(cluster.colors,
-        function(colors) {
-            gg.k <- ggplot(data, aes(xvar, yvar, col = colors)) +
-            geom_point() + labs(title = paste(nlevels(factor(colors)), "Cluster(s)")) +
-            geom_text(aes(label=byobj),hjust=0, vjust=0, cex=3) +
-            xlab(xlabel) + ylab(ylabel)
-          print(gg.k)
-
-        })
+  twkm <- ggplot(assignments, aes(x1, x2)) + geom_point(aes(color=.cluster)) +
+    facet_wrap(~ kmax) + xlab(xlabel) + ylab(ylabel) +
+    guides(color = guide_legend(title = guidecolor, title.position = "left", nrow=1)) +
+    theme(legend.position="bottom")
+  twkm
 }
