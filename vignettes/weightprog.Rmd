@@ -175,7 +175,9 @@ For the first discriminant function, we speculate that the maintain class may ha
 
 ##Future Analysis
 
-As more data for the package is observed over time, we will get a clearer picture of the trends and patterns in each of the visualization graphs. There are many different and interesting variables that can be paired together that could potentially suggest an influence on the objective variable of the marginal change in weight. Though we have defined the main variables we will still need to find other variables to explore. 
+As more data for the package is observed over time, we will get a clearer picture of the trends and patterns in each of the visualization graphs. There are many different and interesting variables that can be paired together that could potentially suggest an influence on the objective variable of the marginal change in weight. Though we have defined the main variables we will still need to find other variables to explore.
+
+In addition, in the future, we might be interested in further first introducing a visualization that explores the relationship between an activity level and sleep cycle variable, along with the objective variable. This will allow for a better understanding of how it is difficult to deduce a relationship between these variables, which is why we proceeded to use cluster analysis and linear discriminant analysis. We could use a contour plot first in our introduction to display how the objective variable changes in two dimensions with the chosen x and y variables. The greatest problem that using a contour plot is that there is little variation in the weight, and a serious problem in the number of observations. These problems might produce a contour plot that does not provide much introduction to our variables. 
 
 ##Session Info
 ```{r}
