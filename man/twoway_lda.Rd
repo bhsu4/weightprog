@@ -18,8 +18,9 @@ twoway_lda(main, avar, bvar, cvar, dvar, data, bylabel)
 \details{
 twoway_lda() returns a scatterplot of the top two discriminant functions from linear combinations, with the utilization of the objective variable's subgroups as labels to see how well each subgroup is separated. Along with the scatterplot, the histogram for the top two discriminant functions can be seen.
 }
-\examples
+\examples{
 example <- iris
-twoway_lda(example$Species, example$Sepal.Length, example$Petal.Length, example$Sepal.Width,
+twoway_lda(example$Species, example$Sepal.Length,
+           example$Petal.Length, example$Sepal.Width,
            example$Petal.Width, example, example$Species)
 }
