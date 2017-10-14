@@ -146,10 +146,8 @@ Meanwhile, the second lineplot is facetted by the day of the week, and produces 
 The k-means clustering allows for us to find groups that have not been explicitly defined in the data, specifically through two variables of interest. The function creates k centroids, allowing for k clusters to be created, while plotting all these different k-means clusters to allow for a decision on how many clusters to use. In addition, this allows for a confirmation of whether or not the objective variables' subgroups really have a cluster. Though this is a less explicit way of answering whether there is a relationship between two variables according to the objective variable, it allows us to observe almost all possibilities, from small to large amounts of clusters to confirm previous findings. (Note: this k-means is modified from the internet)
 
 ```{r}
-par(mfrow=c(3, 2)) #still trying to figure out how to make clusters fit
-twoway_kmeans(hello, 5, "Distance", "Deep_Sleep", 
-              hello$Distance, hello$Deep_Sleep, hello$Class, 
-              "Distance (km)", "Deep Sleep (%)")
+twoway_kmeans(hello$Distance, hello$Deep_Sleep, 5, 
+              "Distance (km)", "Deep Sleep (%)", "Cluster(s) by Color")
 ```
 
 To further see if an individual's weight changes is affected by the speculation of a relationship between distance walked and percent in deep sleep, the function can confirm how these weight changes are clustered. Theoretically, we would say that higher activity levels might induce a more tired state subsequently higher percentage of deep sleep, which can then split into the subgroups of our objective variable. For gains in weight, we would speculate shorter distance (low activity), and losses in weight with longer distance (high activity), which would mean that for each subgroup, there should be a cluster. 

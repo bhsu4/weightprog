@@ -5,6 +5,7 @@ importFrom("plyr", l_ply)
 import(tidyr)
 import(tidyverse)
 import(grid)
+import(broom)
 
 exportPattern("^[[:alpha:]]+")
 
