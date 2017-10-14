@@ -28,7 +28,7 @@ mykey <- gs_url("https://docs.google.com/spreadsheets/d/10KwAd2PL4FXbNrWkhLstzeu
 hello <- gs_read(mykey)
 ```
 
-Before proceeding with the visualizations, we will first need to find a presentable objective variable that will be the focal point of our statistical analysis. The objective variable chosen for the package is the marginal weight change from one day to the next. To determine the relative size of such changes, we will take the absolute value of the marginal weight change, and also determine whether such changes were a loss, gain, or maintain in weight.
+Before proceeding with the visualizations, we will first need to find a presentable objective variable that will be the focal point of our statistical analysis. The objective variable chosen for the package is the marginal weight change from one day to the next. To determine the relative size of such changes, we will take the absolute value of the marginal weight change, and also determine whether such changes were a loss, gain, or maintain in weight. There will be further explanation on what we mean by objective variable when we introduce the data in the package.
 
 ### Add Absolute Weight and Weight Change Groups 
 ```{r}
@@ -52,7 +52,7 @@ hello$Day <- factor(hello$Day, levels=c("Monday", "Tuesday",
 
 Before introducing the functions in the package, let's take a closer look at the data that is built into the package. Since the statistics consist of activity, measured only by distance walked, any functions will always use distance as the primary measurement. As for the sleep cycle, there are numerous categories of categories, and to take look at what each of the categories mean, we will first look at the summarization of the means for our sleep cycle statistics. For each statistic: Time_Asleep is hours asleep, Time_Bed is hours in bed, Time_Deep is hours in deep sleep, Time_Light is hours in light sleep, and Time_Sleep is hours till asleep. Since the mean does not tell us much about which category can be used as a primary measurement, we can proceed to using a linear regression and ANOVA. 
 
-```{r, messages=FALSE}
+```{r, warning=FALSE, echo=FALSE}
 library(tidyverse)
 ```
 ```{r}
@@ -70,6 +70,8 @@ xlab("Day of Week") + ylab("Hours") +
 theme(axis.text.x=element_text(angle=45,hjust=1))
 ```
 
+###Choosing our Primary Variables
+
 With plenty of variables that seem to overlap and express similar characteristics, we will specifically run a multiple regression of marginal weight change on the distance, time asleep, and time in deep sleep and light sleep. When we run a linear model through these variables, the only significant variable is that of the time in deep sleep. Hence, we will specifically use deep sleep as our primary measurement for our sleep cycle (occasionally, we will use time asleep because it is a more general measurement). Likewise, when we run an ANOVA on the change in weight with variables of distance walked (measuring activity level) and time in deep sleep (measuring sleep cycle), we observe that deep sleep is on the borderline of being a statistically significant variable. Therefore, there is convincing evidence of a statistically significant difference in the time of deep sleep amongst changes in weight. Therefore, the two primary measurements that will be utilized will be distance for activity level, and deep sleep (can be in either hours or percentage), along with the occasional use of time asleep as a more general measurement. (Note: For future changes, we will will surpress the output for the linear regression and ANOVA.)
 
 ```{r}
@@ -84,6 +86,21 @@ summary(fit) # show results
 weightprog1 = aov(Marginal_Weight ~ Distance*Time_Deep, data = base2)
 summary(weightprog1)
 ```
+
+###Understanding the Objective Variable
+
+With the primary variables chosen to represent activity level and sleep cycle, we can now shift our focus to seeing if specific characteristics in distance and time in deep sleep seem result in some type of pattern for the changes in weight. In this case, the variable of focus will be called the objective variable, consisting of the marginal changes in weight, with subgroups (called Class) of "Gain", "Loss", and "Maintain" in weight. Here is a scatterplot that shows a general overview of the two primary variables by the objective variable's subgroups: 
+
+```{r}
+intro <- hello %>%
+  mutate(Time_Deep = Deep_Sleep * Time_Asleep / 100) %>%
+  select("Distance", "Time_Deep", "Class") %>% ggplot(aes(x=Distance, y=Time_Deep, col = Class)) +
+  geom_point() + xlab("Distance (km)") + ylab("Time in Deep Sleep (hrs)") +
+  facet_wrap(~Class , ncol=1, scales="fixed", strip.position="right")
+intro
+```
+
+Once we have gotten a better understanding of the built-in dataset in the package, we may proceed to the two-way graphs, visualizations, and analysis in the `weightprog` package. 
 
 ##Two Way Scatter Feature
 
@@ -141,7 +158,7 @@ The lineplot for the data used simply shows the progression of the individual's 
 
 Meanwhile, the second lineplot is facetted by the day of the week, and produces a lineplot for each of the subgroups of the objective variable (that is: loss, gain, and maintain). Each day will present a lineplot of the trend between the x and y variable amongst the subgroup. Specifically, we look at the relationship bewteen distance walked and the percent of deep sleep per day, based on weight changes. So far, we see that from Monday to Thursday, there seems to be only losses in weight, especially with higher amounts of distance walked, but an inconsistent deep sleep percentage. Meanwhile, for Friday, Saturdays, and Sundays, there are only gains in weight, with a substantially lower distance walked on weekends, but a moderate consistency in deep sleep percentages. This lineplot by facetting the objective variable allows for a specific observation of each day's progress of weight changes, and how this progression changes with relation to distance and deep sleep percentage. Though there does seem like a preliminary pattern exists amongst the day of the week and weight changes, it will be interesting to see such weight fluctuations as more data is collected. 
 
-###K-Means Clustering 
+##K-Means Clustering 
 
 The k-means clustering allows for us to find groups that have not been explicitly defined in the data, specifically through two variables of interest. The function creates k centroids, allowing for k clusters to be created, while plotting all these different k-means clusters to allow for a decision on how many clusters to use. In addition, this allows for a confirmation of whether or not the objective variables' subgroups really have a cluster. Though this is a less explicit way of answering whether there is a relationship between two variables according to the objective variable, it allows us to observe almost all possibilities, from small to large amounts of clusters to confirm previous findings. (Note: this k-means is modified from the internet)
 
@@ -156,7 +173,7 @@ Ideally, we would only need three clusters, however in the function, we do not s
 
 While there will always be mis-classified data, the top cluster does not show much consistency in our data, which means that we cannot generalize much about subgroups gain and maintain in weight. However, we do see that losses in weight tend to be classified together with relative consistency with distances from 0 to 8 km and deep sleep percentage from 40 to 65 percent. 
 
-###Linear Discriminant Analysis
+##Linear Discriminant Analysis
 
 The linear discriminant analysis (LDA) allows a more definitive pattern recognition method in comparison to cluster analysis. This type of machine learning focuses on finding a linear combination of features that help separate the groups as far as possible. In addition, linear discriminant analysis might be a better way compared to that of clustered analysis because instead of determining a pattern for grouping certain variables, LDA allows us to utilize the property that the membership to each classification is established already. To use the linear discriminant analysis, the underlying assumption here is that the data is normally distributed, and each of the subgroups have equivalent variances. 
 
