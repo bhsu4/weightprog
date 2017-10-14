@@ -156,11 +156,26 @@ Ideally, we would only need three clusters, however in the function, we do not s
 
 While there will always be mis-classified data, the top cluster does not show much consistency in our data, which means that we cannot generalize much about subgroups gain and maintain in weight. However, we do see that losses in weight tend to be classified together with relative consistency with distances from 0 to 8 km and deep sleep percentage from 40 to 65 percent. 
 
+###Linear Discriminant Analysis
+
+The linear discriminant analysis (LDA) allows a more definitive pattern recognition method in comparison to cluster analysis. This type of machine learning focuses on finding a linear combination of features that help separate the groups as far as possible. In addition, linear discriminant analysis might be a better way compared to that of clustered analysis because instead of determining a pattern for grouping certain variables, LDA allows us to utilize the property that the membership to each classification is established already. To use the linear discriminant analysis, the underlying assumption here is that the data is normally distributed, and each of the subgroups have equivalent variances. 
+
+For the package data, the goal of using linear discriminant analysis was to find a linear combination for the selected variables that will provide the largest distinction from one group to the next. The variables used to provide the best separation for the class subgroups (gain/loss/maintain) included distance, time asleep, and percentage in deep and light sleep. For each of the two discriminant functions, a histogram will be used to provide visualization of each class' separation. Along with the histogram, a scatterplot of the first and second discriminant function's values for the classes will be provided. Both the histograms and scatterplots will provide visualizations to pinpoint the presence of any characteristic difference for each class.  
+
+```{r, messages=FALSE}
+library(broom)
+```
+
+```{r}
+twoway_lda(hello$Class, hello$Distance, hello$Time_Asleep,
+           hello$Deep_Sleep, hello$Light_Sleep, hello, hello$Class)
+```
+
+For the first discriminant function, we speculate that the maintain class may have some separation from the loss class. To better see if there is such discrepancies, we take a look at the second discriminant function, which refutes this statement. Though the loss group does seem to be in a small class of its own, it does not seem to be distinctly separate from the other classes. When we continue and take a look at the scatterplot of the two discriminant functions, we observe that the first discriminant function does indeed have a moderate separation between the maintain and loss group along the x axis. However, for the second discriminant function, it is of the contrary, as none of the groups seem to be separate from one another. Though we do not have much conclusive evidence, the linear discriminant analysis has helped narrow down the possibility that there may exist some type of separation between the loss and maintain group with regards to the characteristics used in distance, time asleep, and percent in deep and light sleep. 
+
 ##Future Analysis
 
 As more data for the package is observed over time, we will get a clearer picture of the trends and patterns in each of the visualization graphs. There are many different and interesting variables that can be paired together that could potentially suggest an influence on the objective variable of the marginal change in weight. Though we have defined the main variables we will still need to find other variables to explore. 
-
-In addition, in the future, we might have interested in further evidence for classifying our observations. Since we have numerous classes for our objective variable, we can observe how new observations are classified by the characteristics we are focusing on. This type of classiciation, and group selection can provide further evidence on whether there are distinct characteristics that are in one group as to another. This is important and different from the k-means clustering performed above, because unlike the cluster analysis which is an exploratory method to determine a pattern for grouping certain variables, the discriminant analysis allows us to allocate each of them to a group in which groups are known in advance. This will allow us to observe how the group separation takes place. 
 
 ##Session Info
 ```{r}
