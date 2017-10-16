@@ -4,7 +4,7 @@ twoway_lda <- function(main, avar, bvar, cvar, dvar, data, bylabel){
   lda1 <- ldahist(data = weight.lda.values$x[,1], g = bylabel)
   lda2 <- ldahist(data = weight.lda.values$x[,2], g = bylabel)
   lda.dat <- data.frame(cbind(weight.lda.values$x[,1], weight.lda.values$x[,2]))
-  lda3 <- ggplot(lda.dat, aes(x = X1, y = X2)) +
+  lda3 <- ggplot(lda.dat, aes_string(x = "X1", y = "X2")) +
     geom_point() + geom_text(aes(label = bylabel)) +
     xlab("LDA (Linear Combination #1)") +
     ylab("LDA (Linear Combination #2)") +

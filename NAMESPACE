@@ -1,12 +1,12 @@
 import(ggplot2)
-importFrom(MASS)
+importFrom("MASS", lda, ldahist)
 import(stats)
 importFrom("plyr", l_ply)
 import(tidyr)
 import(tidyverse)
 import(grid)
 import(broom)
-import(dplyr)
+importFrom("dplyr", group_by, do)
 
 exportPattern("^[[:alpha:]]+")
 

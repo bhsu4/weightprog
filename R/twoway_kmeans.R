@@ -4,7 +4,7 @@ twoway_kmeans <- function(xname, yname, kmax, xlabel, ylabel, guidecolor) {
   #do kmeans on data for each k-number of clusters
   assignments <- kclusts %>% group_by(kmax) %>% do(augment(.$kclust[[1]], data.km))
 
-  twkm <- ggplot(assignments, aes(x1, x2)) + geom_point(aes(color=.cluster)) +
+  twkm <- ggplot(assignments, aes_string(x = "x1", y = "x2")) + geom_point(aes(color=paste(".","cluster"))) +
     facet_wrap(~ kmax) + xlab(xlabel) + ylab(ylabel) +
     guides(color = guide_legend(title = guidecolor, title.position = "left", nrow=1)) +
     theme(legend.position="bottom")
