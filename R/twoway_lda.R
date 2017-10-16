@@ -1,4 +1,4 @@
-twoway_lda <- function(main, avar, bvar, cvar, dvar, data, bylabel, tlabel){
+twoway_lda <- function(main, avar, bvar, cvar, dvar, data, bylabel){
   weight.lda <- lda(main ~ avar + bvar + cvar + dvar, data)
   weight.lda.values <- predict(weight.lda)
   lda1 <- ldahist(data = weight.lda.values$x[,1], g = bylabel)

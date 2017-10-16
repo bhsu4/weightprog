@@ -18,6 +18,6 @@ twoway_kmeans() returns a ggplot of the k different created k-means clustering, 
 }
 \examples{
 example <- iris
-twoway_kmeans(iris$Sepal.Length, iris$Petal.Length, 3,
+twoway_kmeans(example$Sepal.Length, example$Petal.Length, 3,
               "Sepal.Length", "Petal.Length", "Cluster by Color")
 }
