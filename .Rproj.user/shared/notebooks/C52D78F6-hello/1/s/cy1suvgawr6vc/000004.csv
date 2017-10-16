@@ -1,6 +1,0 @@
-"0","twoway_scattercol(hello, hello$Time_Asleep, hello$Deep_Sleep,
-                  hello$Marginal_Weight, ""Time Asleep (hrs)"", ""Deep Sleep (%)"")
-"
-"2","Error in twoway_scattercol(hello, hello$Time_Asleep, hello$Deep_Sleep,  : 
-  could not find function ""twoway_scattercol""
-"
