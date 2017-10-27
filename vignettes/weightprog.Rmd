@@ -12,7 +12,11 @@ In this vignette, we will demonstrate how to use the package, `weightprog`. This
 
 ## Description
 
-weightprog() specifically provides analysis through visualization through graphics. The objective of visualization in this package is to introduce a third variable (our objective variable), and present progressions of our objective variable without needing to refer to a three dimensional graph. The visualization graphics, embeds ggplots that specifically uses color and sizes as an aid to enhance basic two way graphs. The manipulation of size and color will allow an inclusion of such attributes of a third variable, while allowing distinctions between any groups of interest, but more importantly, contained in a two-dimensional graph. 
+When provided with weight changes along with data on sleep cycle and activity levels, the conventional analysis resorts to regression and t-test analysis. In fact, current type of analysis provides graphics through scatterplots that tend to provide minimal information. Instead, to assess the progressions of weight, we developed `weightprog` which specifically provides analysis through visualization by introducing a third variable, known as our objective variable, and presenting progressions of our objective variable without needing to refer to a three dimensional graph.
+
+In fact, to understand where weight fluctuations stem from, we specifically track any weight changes while simultaneously keeping track of daily activities such as walking and sleep cycles. In addition, to fully comprehend whether activity and sleep levels are associated with daily weight changes, `weightprog` uses multiple graphical estimators. For starters, the visualization graphics, embeds ggplots that specifically uses color and sizes as an aid to enhance basic two way graphs. Such basic twoway graphs include scatterplots, lineplots, and strip plots that help estimate the changes in weight by color categorization for any relationship between two variables. For more in depth analysis, visualization graphics specifically aim to observe distinctions between groups through pattern recognition. The inclusion of cluster and linear discriminant analysis provide different types of data categorization that allow us to recognize specific trends in the data the basic twoway graphs fails to capture. From manipulation of size and color to concrete identification in data, these types of visualizations will allow the attributes of a third variable to be assessed while contained in a two-dimensional graph. 
+
+For a more in-depth explanation of the data set, please refer to the Usage section. 
 
 ## Usage
 
@@ -50,7 +54,7 @@ hello$Day <- factor(hello$Day, levels=c("Monday", "Tuesday",
 
 ## Introduction to Package Data 
 
-Before introducing the functions in the package, let's take a closer look at the data that is built into the package. Since the statistics consist of activity, measured only by distance walked, any functions will always use distance as the primary measurement. As for the sleep cycle, there are numerous categories of categories, and to take look at what each of the categories mean, we will first look at the summarization of the means for our sleep cycle statistics. For each statistic: Time_Asleep is hours asleep, Time_Bed is hours in bed, Time_Deep is hours in deep sleep, Time_Light is hours in light sleep, and Time_Sleep is hours till asleep. Since the mean does not tell us much about which category can be used as a primary measurement, we can proceed to using a linear regression and ANOVA. 
+Before introducing the functions in the package, let's take a closer look at the data that is built into the package. Since the statistics consist of activity, measured only by distance walked, functions will always use distance as the primary measurement. As for the sleep cycle, there are numerous categories of categories, and to take look at what each of the categories mean, we will first look at the summarization of the means for our sleep cycle statistics. For each statistic: Time_Asleep is hours asleep, Time_Bed is hours in bed, Time_Deep is hours in deep sleep, Time_Light is hours in light sleep, and Time_Sleep is hours till asleep. Since the mean does not tell us much about which category can be used as a primary measurement, we can proceed to using a linear regression and ANOVA. 
 
 ```{r, warning=FALSE, echo=FALSE}
 library(tidyverse)
@@ -89,7 +93,7 @@ summary(weightprog1)
 
 ### Understanding the Objective Variable
 
-With the primary variables chosen to represent activity level and sleep cycle, we can now shift our focus to seeing if specific characteristics in distance and time in deep sleep seem result in some type of pattern for the changes in weight. In this case, the variable of focus will be called the objective variable, consisting of the marginal changes in weight, with subgroups (called Class) of "Gain", "Loss", and "Maintain" in weight. Here is a scatterplot that shows a general overview of the two primary variables by the objective variable's subgroups: 
+With the primary variables chosen to represent activity level and sleep cycle, we can now shift our focus to seeing if specific characteristics in distance and time in deep sleep seem to result in some type of pattern for the changes in weight. In this case, the variable of focus will be called the objective variable, consisting of the marginal changes in weight, with subgroups (called Class) of "Gain", "Loss", and "Maintain" in weight. Here is a scatterplot that shows a general overview of the two primary variables by the objective variable's subgroups: 
 
 ```{r}
 intro <- hello %>%
