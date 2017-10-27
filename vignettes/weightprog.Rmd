@@ -8,7 +8,7 @@ vignette: >
 ---
 ## Introduction
 
-In this vignette, we will demonstrate how to use the package, `weightprog`. This package will use data from the smartphone "Pillow" and "Health" app that provides sleep cycle and activity level statistics. The objective of the package is to allow for easy visualization and analysis for comparisons of any statistical changes in our focused variable over a time period. 
+In this vignette, we will demonstrate how to use the package, `weightprog`. This package will use data from the smartphone "Pillow" and "Health" app that provides sleep cycle and activity level statistics. The objective of the package is to allow for easy visualization and analysis for comparisons of any statistical changes in our focused variable over a time period. Specifically, the package's illustrations include a multitude of two-way graphs that evaluate the underlying trend in different ways. Each different type of analysis will be described in the following secctions.  
 
 ## Description
 
