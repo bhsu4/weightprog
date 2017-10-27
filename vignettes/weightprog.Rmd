@@ -104,7 +104,14 @@ intro <- hello %>%
 intro
 ```
 
-Once we have gotten a better understanding of the built-in dataset in the package, we may proceed to the two-way graphs, visualizations, and analysis in the `weightprog` package. 
+Once we have gotten a better understanding of the built-in dataset in the package, we may proceed to the Experimental Design utilizing these variables. 
+
+
+## Experimental Design
+
+As mentioned previously above in the introduction to the data, we specifically look at how varying activity and sleep levels affect any weight changes over time. We will collect data by utilizing the "Health" application on the iPhone, which will automatically track the number of steps and distance walked today, along with the "Pillow" application that will track various sleep variables. To track any weight changes, a standard weighing scale will be used in order to weigh myself every morning after waking up.
+
+With this type of experimental design, we see that there may be a low level of reliability in the data. Specifically, the measurement from the applications are by no means accurate, because it may not be an well-validated reflection of distance and sleep, but it is the closest we can get given that the phone application is only a tool of estimating our variables. This provides us the closest way to see whether or not distance walked, and sleep patterns play a role in any possible weight changes when limiting the observations to daily activities. However, we would have liked to include even more information that would have helped provide an even more convincing case for weight changes over time. Out of the many confounders, there exists confounders such as food intake (i.e calories) and exercise outside of walking that are not captured in the data. These potential confounders are very likely to play a role in weight changes. Since there is practically no aspect of the experiment that involves any treatment, we cannot blind or randomize anything without the participant (myself) knowing.  
 
 ## Two Way Scatter Feature
 
