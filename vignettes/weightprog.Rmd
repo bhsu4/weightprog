@@ -113,7 +113,9 @@ As mentioned previously above in the introduction to the data, we specifically l
 
 With this type of experimental design, we see that there may be a low level of reliability in the data. Specifically, the measurement from the applications are by no means accurate, because it may not be an well-validated reflection of distance and sleep, but it is the closest we can get given that the phone application is only a tool of estimating our variables. This provides us the closest way to see whether or not distance walked, and sleep patterns play a role in any possible weight changes when limiting the observations to daily activities. However, we would have liked to include even more information that would have helped provide an even more convincing case for weight changes over time. Out of the many confounders, there exists confounders such as food intake (i.e calories) and exercise outside of walking that are not captured in the data. These potential confounders are very likely to play a role in weight changes. Since there is practically no aspect of the experiment that involves any treatment, we cannot blind or randomize anything without the participant (myself) knowing.  
 
-## Two Way Scatter Feature
+## Example Features
+
+### Two Way Scatter Feature
 
 There are two different graphs within the two way scatter feature, twoway_scatterg(), and twoway_scatterc(). Both of these functions utilize a simple scatter plot between two variables of interest, and adds an additional layer for the objective variable. The two way scatter of objective variable by groups is the first of two functions, specifically aimed at using the objective variable's data points' color and size to provide information about the attributes. In addition, it runs a linear model through the specific subgroups of the objective variable. Meanwhile, the latter of the two functions, two way scatter by color, only displays any statistical changes in the objective variable through a sequential color palette. 
 
@@ -139,7 +141,7 @@ For the data inside the package, the objective variable is the marginal weight, 
 
 The speculation for the grouped scatter plot was that the more distance walked during the day, the more sleep an individual will need. For the two way scatter of the objective variable by groups, the two subgroups of gain and loss in weight showed a poor linear fit. Meanwhie, the maintain in weight saw a good linear fit. For the two way scatter of the objective variable by color, the speculation here was that more hrs of sleep might be because of a higher proportion of deeper sleep, and thus, possible gain in weight (assuming sleeping is minimal activity). The general pattern consists of losses in weight (green) in the lower left corner, which denotes less hours of sleep and less deep sleep, and the gains in weight (red) in the upper left corner denotes less hours of sleep and greater sleep. Both these scatterplots result in interesting conclusions, but as more data is included into the package, then a more conclusive result can be deduced. 
 
-## Two Way Strip Plot
+### Two Way Strip Plot
 
 The strip plot is similar to the simplified two way scatter plot, because the points' color denotes the attribute (i.e. day of the week, species, etc.) of y variable chosen. The strip plot provides a better overview of the data's patterns within a subgroup, while also providing a lineplot of the estimate mean of each group. 
 
@@ -151,9 +153,9 @@ twoway_strip(hello, hello$Day, hello$Distance, " ",
 
 There was speculation that for different days of the week, an individual might be walked farther in distance, which might inherently mean that the activity level from one day to another differ. With different activity levels, it would be possible that this could affect the individual's marginal changes in weight. In the data, we specifically looked at the individual's activity level measured by distance walked in kilometers depending on the day of the week. We specifically see that the mean of distance walked seem to be on Monday and Friday, while the weekends seem to have significantly lower activity levels. 
 
-## Two Way Lineplot
+### Two Way Lineplot
 
-There are two different two way lineplots that can are generated, twoway_lineplot() and twoway_lineplotf(). The first is a connected scatterplot of a y variable observed over a time period. Though there is only one y variable in consideration, it would also be possible to add multiple other lines into the graph by re-standardizing the data to fit into the specified range. The second lineplot is used for facetting by the specific characteristic of the objective variable. The plot creates multiple lines in each characteristic, which helps identify any possibe trends in the data within each subgroup and characteristic. Both lineplots shows a basic summary of the statistical progression of the variable of interest.
+There are two different two way lineplots that can are generated, twoway_lineplot() and twoway_lineplotf(). The first is a connected scatterplot of a y variable observed over a time period. This allows us to simply track the progression of a variable over time. The second lineplot is used for facetting by the specific characteristic of the objective variable. The plot creates multiple lines in each characteristic, which helps identify any possibe trends in the data within each subgroup and characteristic. Both lineplots shows a basic summary of the statistical progression of the variable of interest.
 
 ```{r, eval=TRUE}
 #source('/Users/Benjamin Hsu/Desktop/weightprog/R/twoway_lineplot.R')
@@ -169,7 +171,7 @@ The lineplot for the data used simply shows the progression of the individual's 
 
 Meanwhile, the second lineplot is facetted by the day of the week, and produces a lineplot for each of the subgroups of the objective variable (that is: loss, gain, and maintain). Each day will present a lineplot of the trend between the x and y variable amongst the subgroup. Specifically, we look at the relationship bewteen distance walked and the percent of deep sleep per day, based on weight changes. So far, we see that from Monday to Thursday, there seems to be only losses in weight, especially with higher amounts of distance walked, but an inconsistent deep sleep percentage. Meanwhile, for Friday, Saturdays, and Sundays, there are only gains in weight, with a substantially lower distance walked on weekends, but a moderate consistency in deep sleep percentages. This lineplot by facetting the objective variable allows for a specific observation of each day's progress of weight changes, and how this progression changes with relation to distance and deep sleep percentage. Though there does seem like a preliminary pattern exists amongst the day of the week and weight changes, it will be interesting to see such weight fluctuations as more data is collected. 
 
-## K-Means Clustering 
+### K-Means Clustering 
 
 The k-means clustering allows for us to find groups that have not been explicitly defined in the data, specifically through two variables of interest. The function creates k centroids, allowing for k clusters to be created, while plotting all these different k-means clusters to allow for a decision on how many clusters to use. In addition, this allows for a confirmation of whether or not the objective variables' subgroups really have a cluster. Though this is a less explicit way of answering whether there is a relationship between two variables according to the objective variable, it allows us to observe almost all possibilities, from small to large amounts of clusters to confirm previous findings. (Note: this k-means is modified from the internet)
 
@@ -184,7 +186,7 @@ Ideally, we would only need three clusters, however in the function, we do not s
 
 While there will always be mis-classified data, the top cluster does not show much consistency in our data, which means that we cannot generalize much about subgroups gain and maintain in weight. However, we do see that losses in weight tend to be classified together with relative consistency with distances from 0 to 8 km and deep sleep percentage from 40 to 65 percent. 
 
-## Linear Discriminant Analysis
+### Linear Discriminant Analysis
 
 The linear discriminant analysis (LDA) allows a more definitive pattern recognition method in comparison to cluster analysis. This type of machine learning focuses on finding a linear combination of features that help separate the groups as far as possible. In addition, linear discriminant analysis might be a better way compared to that of clustered analysis because instead of determining a pattern for grouping certain variables, LDA allows us to utilize the property that the membership to each classification is established already. To use the linear discriminant analysis, the underlying assumption here is that the data is normally distributed, and each of the subgroups have equivalent variances. 
 
@@ -201,9 +203,19 @@ twoway_lda(hello$Class, hello$Distance, hello$Time_Asleep,
 
 For the first discriminant function, we speculate that the maintain class may have some separation from the loss class. To better see if there is such discrepancies, we take a look at the second discriminant function, which refutes this statement. Though the loss group does seem to be in a small class of its own, it does not seem to be distinctly separate from the other classes. When we continue and take a look at the scatterplot of the two discriminant functions, we observe that the first discriminant function does indeed have a moderate separation between the maintain and loss group along the x axis. However, for the second discriminant function, it is of the contrary, as none of the groups seem to be separate from one another. Though we do not have much conclusive evidence, the linear discriminant analysis has helped narrow down the possibility that there may exist some type of separation between the loss and maintain group with regards to the characteristics used in distance, time asleep, and percent in deep and light sleep. 
 
-## Future Analysis
+## Results
 
-As more data for the package is observed over time, we will get a clearer picture of the trends and patterns in each of the visualization graphs. There are many different and interesting variables that can be paired together that could potentially suggest an influence on the objective variable of the marginal change in weight. Though we have defined the main variables we will still need to find other variables to explore.
+Since our main goal is to see if there seems to be an explanation for the marginal gain, loss and maintain in weight with respect to the variables reflecting activity and sleep levels, we will summarize the results obtained from above. We begin with some basic summarization graphics: the strip-plot illustrates that the activity level on weekends tend to be significantly lower than weekdays. Meanwhile, the lineplot also illustrates that there tends to be a more prevalent gain in weight on the weekends. Both of these visualizations only allow simple summarization, but no significant advances in answering our question.
+
+To answer our question of interest, we look at the two-way scatter along with cluster and linear discriminant analysis. From our two way scatter feature, we see a randomized trend for the different subgroups for the objective variable. There does not seem to be any specific values of deep sleep and distance walked that seem produce a prevalent pattern for changes in weight for both the size and color utilized. We proceed to the cluster analysis and see that ideally we would need three clusters for each of the subgroups in our class, but this does not seem to provide much distinction between each group. Instead, it seems like such division in the cluster provides an arbitrary clustering that will not help identify specific traits of deep sleep and distance that chracterize the subgroups. To help with maximizing the separation between each group, we resort to the linear discriminant analysis. This allows for a more definitive pattern recognition method based on finding an optimal linear combination that will separate each subgroup. When we look at the histogram for both linear combinations, there does not seem to be any distinction between the groups as they are randomly dispersed with overlapping areas. By plotting the linear combinations, we also see that such subgroups seem to be randomly dispersed, without any distinct pattern recognized. Thus, we conclude that through our visualizations, we are convinced that there does not seem to be any specific values of deep sleep and distance amongst the different subgroups for the marginal change in weight. 
+
+## Limitations and Future Analysis
+
+
+
+With a relatively small sample size from the data collected over time in the package at n observations, we can undoubtedly get a clearer picture of the trends with data covering a longer period of time. In addition, we observe that the data is not necessarily representative of our population of interest, given that it is the data from one individual. Therefore, we are limited to any statistical inference that applies to myself only.
+
+There are many different and interesting variables that can be paired together that could potentially suggest an influence on the objective variable of the marginal change in weight. Though we have defined the main variables we will still need to find other variables to explore.
 
 In addition, in the future, we might be interested in further first introducing a visualization that explores the relationship between an activity level and sleep cycle variable, along with the objective variable. This will allow for a better understanding of how it is difficult to deduce a relationship between these variables, which is why we proceeded to use cluster analysis and linear discriminant analysis. We could use a contour plot first in our introduction to display how the objective variable changes in two dimensions with the chosen x and y variables. The greatest problem that using a contour plot is that there is little variation in the weight, and a serious problem in the number of observations. These problems might produce a contour plot that does not provide much introduction to our variables. 
 
