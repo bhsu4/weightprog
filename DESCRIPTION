@@ -1,7 +1,7 @@
 Package: weightprog
 Type: Package
 Title: Visualizing, Summarizing, and Analyzing Data with Objective Variable 
-Version: 0.2.14
+Version: 0.2.15
 Author: Benjamin Hsu
 Maintainer: Benjamin Hsu <bhsu4@u.rochester.edu>
 Description: The objective of visualization in this package is to introduce a third variable (our objective variable), and present changes in our objective variable without needing to refer to a three dimensional graph. Specifically, in the package, the data we look at will be an individual's weight progression specifically focused on individual sleep cycles and daily activity in walking. The specific focus is on how these different variables play a role in the individual's weight changes over time. 

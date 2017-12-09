@@ -8,5 +8,5 @@ twoway_kmeans <- function(xname, yname, kmax, xlabel, ylabel, guidecolor) {
     facet_wrap(~ kmax) + xlab(xlabel) + ylab(ylabel) +
     guides(color = guide_legend(title = guidecolor, title.position = "left", nrow=1)) +
     theme(legend.position="bottom")
-  twkm
+  twkm 
 }
