@@ -1,6 +1,7 @@
 Package: weightprog
 Type: Package
 Title: Visualizing, Summarizing, and Analyzing Data with Objective Variable 
+<<<<<<< HEAD
 Version: 0.2.17
 Author: Benjamin Hsu
 Maintainer: Benjamin Hsu <bhsu4@u.rochester.edu>
