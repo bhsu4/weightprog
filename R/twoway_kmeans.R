@@ -10,3 +10,4 @@ twoway_kmeans <- function(xname, yname, kmax, xlabel, ylabel, guidecolor) {
     theme(legend.position="bottom")
   twkm 
 }
+
