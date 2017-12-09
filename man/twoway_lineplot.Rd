@@ -6,7 +6,7 @@
 Two way lineplot with variable(s) of interest over time period. twoway_lineplot() simply creates a lineplot of a variable progression over chosen time period. twoway_lineplotf() facets by a variable so that the objective variable is isolated for observation in each characteristic.
 }
 \usage{
-twoway_lineplot(data, date, yname, ylabel)
+twoway_lineplot(data, date, yname, xlabel, ylabel, ymean, ymlabel)
 twoway_lineplotf(data, xname, yname, bycolor, bywrap, xlabel, ylabel)
 }
 \arguments{
@@ -18,10 +18,8 @@ twoway_lineplotf(data, xname, yname, bycolor, bywrap, xlabel, ylabel)
 \item{bycolor}{Chosen variable for different lines within facet's characteristics (recommend objective variable)}
 \item{xlabel}{Name for x axis labels.}
 \item{ylabel}{Name for y axis labels.}
+\item{ymean}{Mean of the y variable of interest.}
+\item{ymlabel}{Name for mean of y variable label.}
 }
 
-\examples{
-example <- iris
-example$date <- seq(as.Date("1910/1/1"), as.Date("1910/5/30"), "days")
-twoway_lineplot(example, date, example$Sepal.Length, "Sepal Length")
-}
+

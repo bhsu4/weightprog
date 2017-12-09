@@ -171,20 +171,39 @@ twoway_strip(hello, hello$Day, hello$Distance, " ",
              hello$Day, "Day of Week", "Distance Walked (km)")
 ```
 
-There was speculation that for different days of the week, an individual might be walked farther in distance, which might inherently mean that the activity level from one day to another differ. With different activity levels, it would be possible that this could affect the individual's marginal changes in weight. In the data, we specifically looked at the individual's activity level measured by distance walked in kilometers depending on the day of the week. We specifically see that the mean of distance walked seem to be on Monday and Friday, while the weekends seem to have significantly lower activity levels. 
+There was speculation that for different days of the week, an individual might be walked farther in distance, which might inherently mean that the activity level from one day to another differ. With different activity levels, it would be possible that this could affect the individual's marginal changes in weight. In the data, we specifically looked at the individual's activity level measured by distance walked in kilometers depending on the day of the week. We specifically see that the mean of distance walked seem to be higher on weekdays, while the weekends seem to have significantly lower activity levels. 
 
 ### Two Way Lineplot
 
 There are two different two way lineplots that can are generated, twoway_lineplot() and twoway_lineplotf(). The first is a connected scatterplot of a y variable observed over a time period. This allows us to simply track the progression of a variable over time. The second lineplot is used for facetting by the specific characteristic of the objective variable. The plot creates multiple lines in each characteristic, which helps identify any possibe trends in the data within each subgroup and characteristic. Both lineplots shows a basic summary of the statistical progression of the variable of interest.
 
-```{r, eval=TRUE}
+```{r, message=FALSE}
+library(kableExtra)
+require(reshape2)
+base3 <- dcast(hello, Day ~ Week_Number, value.var="Weight")
+base3m <- t(data.frame(colMeans(base3[2:14], na.rm=TRUE)))
+rownames(base3m)[1] <- "Weight by Week Number"
+pander(base3m) #Mean Weight of Each Week (Week_Average)
+```
+
+```{r, warning= FALSE}
 #source('/Users/Benjamin Hsu/Desktop/weightprog/R/twoway_lineplot.R')
-twl <- twoway_lineplot(hello, dd, hello$Weight, "Weight (kg)")
+twl <- twoway_lineplot(hello, date = hello$Day_Number, yname = hello$Weight, 
+                xlabel = "Day Number", ylabel = "Weight Over Time", ymean = hello$Week_Average, 
+                ymlabel = "Average Weight per Week", "Weight Statistic")
 twl
+
 twl2 <- twoway_lineplotf(hello, xname = "Distance", yname = "Deep_Sleep",
                  bycolor = "Class", bywrap = "Day", 
                  "Distance (km)", "Deep Sleep (%)")
 twl2
+
+
+
+
+
+  
+
 ```
 
 The lineplot for the data used simply shows the progression of the individual's weight over time. We see a rather constant fluctuation in the weight, between the range of approximately 79 to 82 kilograms. The overall trend of the individual's weight seems to be increasing over time. For the future, additional lines will be considered once more data is provided, which will allow for a more accurate re-standardization of the added variable. 

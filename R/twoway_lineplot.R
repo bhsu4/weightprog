@@ -1,10 +1,11 @@
-twoway_lineplot <- function(data, date, yname, ylabel){
-  ggplot(data, aes(x = date, y = yname)) +
-    geom_line(col="black") +
-    xlab("") +
-    ylab(ylabel) +
-    theme_bw()
+twoway_lineplot <- function(data, date, yname, xlabel, ylabel, ymean, ymlabel, guidecolor){
+    ggplot(data) +
+    geom_line(aes(x = date, y = yname, color = ylabel)) +
+    geom_point(aes(x = date, y = ymean, color = ymlabel)) +
+    xlab(xlabel) + ylab(ylabel) + theme_bw() +
+    guides(color = guide_legend(title = guidecolor, title.position = "top"))
 }
+
 
 twoway_lineplotf <- function(data, xname, yname, bycolor, bywrap, xlabel, ylabel) {
   p = ggplot(data, aes_string(x=xname, y=yname, colour=bycolor)) +
@@ -14,3 +15,6 @@ twoway_lineplotf <- function(data, xname, yname, bycolor, bywrap, xlabel, ylabel
     ylab(ylabel)
   return(p)
 }
+
+
+
