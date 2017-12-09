@@ -7,6 +7,8 @@ import(tidyverse)
 import(grid)
 import(broom)
 importFrom("dplyr", group_by, do)
+import(pander)
+import(reshape2)
 
 exportPattern("^[[:alpha:]]+")
 

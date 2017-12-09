@@ -178,7 +178,6 @@ There was speculation that for different days of the week, an individual might b
 There are two different two way lineplots that can are generated, twoway_lineplot() and twoway_lineplotf(). The first is a connected scatterplot of a y variable observed over a time period. This allows us to simply track the progression of a variable over time. The second lineplot is used for facetting by the specific characteristic of the objective variable. The plot creates multiple lines in each characteristic, which helps identify any possibe trends in the data within each subgroup and characteristic. Both lineplots shows a basic summary of the statistical progression of the variable of interest.
 
 ```{r, message=FALSE}
-library(kableExtra)
 require(reshape2)
 base3 <- dcast(hello, Day ~ Week_Number, value.var="Weight")
 base3m <- t(data.frame(colMeans(base3[2:14], na.rm=TRUE)))

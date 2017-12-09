@@ -6,7 +6,7 @@
 Two way lineplot with variable(s) of interest over time period. twoway_lineplot() simply creates a lineplot of a variable progression over chosen time period. twoway_lineplotf() facets by a variable so that the objective variable is isolated for observation in each characteristic.
 }
 \usage{
-twoway_lineplot(data, date, yname, xlabel, ylabel, ymean, ymlabel)
+twoway_lineplot(data, date, yname, xlabel, ylabel, ymean, ymlabel, guidecolor)
 twoway_lineplotf(data, xname, yname, bycolor, bywrap, xlabel, ylabel)
 }
 \arguments{
@@ -20,6 +20,7 @@ twoway_lineplotf(data, xname, yname, bycolor, bywrap, xlabel, ylabel)
 \item{ylabel}{Name for y axis labels.}
 \item{ymean}{Mean of the y variable of interest.}
 \item{ymlabel}{Name for mean of y variable label.}
+\item{guidecolor}{Title of Legend}
 }
 
 
