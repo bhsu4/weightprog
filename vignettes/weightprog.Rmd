@@ -198,12 +198,6 @@ twl2 <- twoway_lineplotf(hello, xname = "Distance", yname = "Deep_Sleep",
                  "Distance (km)", "Deep Sleep (%)")
 twl2
 
-
-
-
-
-  
-
 ```
 
 The lineplot for the data used simply shows the progression of the individual's weight over time. We see a rather constant fluctuation in the weight, between the range of approximately 79 to 82 kilograms. The overall trend of the individual's weight seems to be increasing over time. For the future, additional lines will be considered once more data is provided, which will allow for a more accurate re-standardization of the added variable. 

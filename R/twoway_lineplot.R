@@ -9,12 +9,12 @@ twoway_lineplot <- function(data, date, yname, xlabel, ylabel, ymean, ymlabel, g
 
 twoway_lineplotf <- function(data, xname, yname, bycolor, bywrap, xlabel, ylabel) {
   p = ggplot(data, aes_string(x=xname, y=yname, colour=bycolor)) +
-    geom_line() +
+    geom_point() +
+    geom_smooth(method='lm', se=FALSE) +
     facet_wrap(as.formula(paste("~", bywrap)), nrow = 2, scales="free") +
     xlab(xlabel) +
     ylab(ylabel)
   return(p)
 }
-
 
 
