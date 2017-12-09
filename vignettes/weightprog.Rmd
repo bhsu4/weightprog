@@ -58,6 +58,7 @@ hello$Day <- factor(hello$Day, levels=c("Monday", "Tuesday",
 Before introducing the functions in the package, let's take a closer look at the data that is built into the package. Since the statistics consist of activity, measured only by distance walked, functions will always use distance as the primary measurement. As for the sleep cycle, there are numerous categories of categories, and to take look at what each of the categories mean, we will first look at the summarization of the means for our sleep cycle statistics. We look at the time asleep, time in bed, time in deep sleep, time in light sleep, and time till falling asleep. The error bars denote the stadard error for each time statistic for that specific day. Since the mean does not tell us much about which category can be used as a primary measurement, we can proceed to using a linear regression and ANOVA. 
 
 ```{r, message=FALSE, echo=FALSE, warning=FALSE}
+library(plyr)
 library(tidyverse)
 ```
 ```{r}
@@ -69,7 +70,6 @@ base <- hello %>%
 base <- gather(base, Time_Asleep, value, -Day) %>% 
         setNames(., c("Day", "Time", "value")) 
 
-library(plyr)
 summarybase <- ddply(base, c("Day", "Time"), summarise,
                N    = length(value),
                mean = mean(value),
@@ -100,11 +100,15 @@ base2 <- hello %>%
   mutate(Time_Light = Light_Sleep * Time_Asleep / 100) %>% 
   select("Distance","Time_Bed", "Time_Asleep", "Time_Deep", "Time_Light", "Marginal_Weight") 
 
-fit <- lm(Marginal_Weight ~ Distance + Time_Asleep + Time_Deep + Time_Light + Time_Bed, data=base2)
-summary(fit) # show results
+fit <- lm(Marginal_Weight ~ Distance + Time_Asleep + Time_Deep + 
+                            Time_Light + Time_Bed, data=base2)
+library(pander)
+pander(fit)
 
 weightprog1 = aov(Marginal_Weight ~ Distance*Time_Deep, data = base2)
-summary(weightprog1)
+pander(summary(weightprog1))
+
+
 ```
 
 ### Understanding the Objective Variable
